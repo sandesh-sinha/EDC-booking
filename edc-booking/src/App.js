@@ -1,8 +1,8 @@
 import React from 'react';
-import {BrowserRouter as Route, Router , Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route , Switch} from 'react-router-dom'
 import {createMuiTheme, ThemeProvider} from '@material-ui/core/styles'
 import './App.css';
-
+import Navbar from './component/Navbar';
 
 // Pages
 import Home from './pages/Home'
@@ -30,6 +30,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <Router>
+        <Navbar/>
         <Switch>
           <Route exact path='/' component={Home} />
           <Route exact path='/login' component={Login} />

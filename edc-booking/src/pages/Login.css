@@ -1,0 +1,24 @@
+.collegeLogo{ 
+    margin : 20px auto;
+    padding : 20px;
+}
+.img {
+    width : 200px;
+    height : 200px;
+}
+
+.form {
+    margin-top: 80px;
+    margin-bottom: 10px;
+    text-align: 'center';
+}
+
+.pageTitle {
+    margin: 10px auto 10px auto;
+    text-align: center;
+}
+
+.fields {
+    margin: 10px auto 10px auto;
+    padding : 5px;
+}
