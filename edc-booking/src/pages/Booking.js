@@ -1,9 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import withStyles from '@material-ui/styles/withStyles'
 
-const styles = (theme) => ({
-    ...theme.spreadThis,  
-})
 export class Booking extends Component {
     render() {
         return (
@@ -13,4 +10,4 @@ export class Booking extends Component {
         )
     }
 }
-export default withStyles(styles)(Booking);
+export default Booking;

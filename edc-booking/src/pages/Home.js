@@ -3,9 +3,8 @@ import {Link} from 'react-router-dom'
 import withStyles from '@material-ui/styles/withStyles';
 import Typography from '@material-ui/core/Typography'
 import './Home.css'
-const styles = (theme) => ({
-    ...theme.spreadThis, 
-})
+
+
 export class Home extends Component {
     imgUrl = require('../images/collegeLogo.png')
     heritage = require('../images/heritage.jpg')
@@ -31,4 +30,4 @@ export class Home extends Component {
     }
 }
 
-export default withStyles(styles)(Home);
+export default Home;

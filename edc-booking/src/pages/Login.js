@@ -6,9 +6,7 @@ import withStyles from '@material-ui/core/styles/withStyles'
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import './Login.css'
-const styles = (theme) => ({
-    ...theme.spreadThis, 
-})
+
 export class Login extends Component {
     constructor(){
         super();
@@ -62,4 +60,4 @@ export class Login extends Component {
         )
     }
 }
-export default withStyles(styles)(Login);
+export default Login;
