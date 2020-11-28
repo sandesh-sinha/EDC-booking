@@ -1,6 +1,6 @@
 {
   "parserOptions": {
-    // Required for certain syntax usages
+    // Required for certai
     "ecmaVersion": 2017
   },
   "plugins": [

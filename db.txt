@@ -1,0 +1,6 @@
+authority no, name, id 
+guest
+booked
+registration
+rooms
+tariff

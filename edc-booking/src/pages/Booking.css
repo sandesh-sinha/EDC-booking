@@ -1,0 +1,26 @@
+.booking {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 80px;
+    margin-left: auto;
+    margin-right : auto;
+    max-width: 800px;
+}
+
+.form {
+    margin-bottom: 10px;
+    text-align: 'center';
+}
+
+.fields {
+    margin-bottom: 10px !important;
+    margin-top: 10px !important;
+    padding : 5px !important;
+}
+
+.formdiv {
+    max-width: 800px;
+    margin-left: 50px !important;
+    margin-right: 50px !important;
+}
