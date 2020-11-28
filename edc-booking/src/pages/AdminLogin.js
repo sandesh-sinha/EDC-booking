@@ -6,20 +6,32 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import './Login.css'
 import {db, auth} from '../firebase';
+import { useStateValue } from '../StateProvider';
 
 function Login() {
+    const admin_email = "admin@iitism.ac.in"
+    const admin_password = "admin@123"
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('');
     const history = useHistory();
+    const [{}, dispatch] = useStateValue();
     const signIn = (event) => {
         event.preventDefault();
-        auth.signInWithEmailAndPassword(email, password)
-            .then( () => {
-                history.push('/');
-            })
-            .catch( (error) => {
-                alert(error.message);
-            })
+        if(email===admin_email && password===admin_password){
+                auth.signInWithEmailAndPassword(email, password)
+                .then( () => {
+                    dispatch({
+                        type : 'SET_ADMIN'
+                    })
+                    history.push('/');
+                })
+                .catch( (error) => {
+                    alert(error.message);
+                })
+        }
+        else{
+            alert("Not admin");
+        }
         
     }
     return (
@@ -30,10 +42,7 @@ function Login() {
                 <img className='img' src={require('../images/collegeLogo.png')} alt='monkey'/>  
             </div>    
             <Typography variant='h2' className='pageTitle'>
-                Login
-            </Typography>
-            <Typography>
-                If you are admin <Link to='/adminlogin'>login here</Link>
+                Admin Login
             </Typography>
             <form noValidate > 
                 <TextField  id='email'
@@ -58,9 +67,6 @@ function Login() {
                         color='primary'
                         onClick={signIn}> <div>Login</div>
                 </Button>
-                <div>
-                    <Typography variant='body2'>Don't have an account ? <Link to='/signup'>Sign up </Link></Typography>
-                </div>
             </form>
         </Grid>
         <Grid item sm />

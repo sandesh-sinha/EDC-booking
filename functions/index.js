@@ -18,7 +18,6 @@ const firebaseApp = firebase.initializeApp();
 const db = firebaseApp.firestore();
 const auth = firebaseApp.auth();
 
-
 // Middlewares
 app.use(cors());
 app.use(express.json());
@@ -31,7 +30,8 @@ app.post('/book' , (req,res)=>{
         checkout : req.body.checkout,
         guest : req.body.guest,
         roomtype : req.body.roomtype,
-        email : req.body.email
+        email : req.body.email,
+        status : req.body.status
     };
     // console.log(data);
     db.collection('booking')
@@ -61,7 +61,8 @@ app.post('/history', (req,res) =>{
                 checkout : doc.data().checkout,
                 guest : doc.data().guest,
                 roomtype : doc.data().roomtype,
-                email : doc.data().email
+                email : doc.data().email,
+                status : doc.data().status
             })
         })
         return res.json(booking);
@@ -70,6 +71,51 @@ app.post('/history', (req,res) =>{
         console.log(err);
     })
 });
+
+app.post('/getpending', (req,res)=>{
+    db.collection('/booking')
+    .where('status', '==', 'pending')
+    .get()
+    .then( (result)=>{
+        console.log(result);
+        let pending = [];
+        result.forEach((doc)=>{
+            pending.push({
+                id : doc.id,
+                name : doc.data().name,
+                checkin : doc.data().checkin,
+                checkout : doc.data().checkout,
+                guest : doc.data().guest,
+                roomtype : doc.data().roomtype,
+                email : doc.data().email,
+                status : doc.data().status
+            })
+        })
+        return res.json(pending);
+    })
+    .catch( (err)=>{
+        console.log(err);
+    })
+});
+
+
+app.post('/update', (req,res)=>{
+    const id = req.body.id;
+    const value = req.body.value;
+    console.log(value);
+    console.log(id);
+    db.collection('booking')
+    .doc(id).set({
+        status : value
+    }, {merge : true})
+    .then( (result)=>{
+        console.log(result);
+        return res.json(result);
+    })
+    .catch( err=>{
+        console.log(err);
+    })
+})
 
 exports.api = functions.https.onRequest(app);
 

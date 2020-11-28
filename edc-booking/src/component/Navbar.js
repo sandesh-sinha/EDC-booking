@@ -9,11 +9,14 @@ import {useStateValue} from '../StateProvider'
 import { auth } from '../firebase';
 
 function Navbar(){
-  const [{user} , dispatch] = useStateValue();
+  const [{user, admin} , dispatch] = useStateValue();
   const handleAuthentication = () => {
       console.log("signout");
       if(user){
           auth.signOut();
+          dispatch({
+            type : 'SET_ADMIN_FALSE'
+          })
       }
   }
     return (
@@ -21,10 +24,11 @@ function Navbar(){
           <Toolbar>
               <div className="nav-container">
                 <Button onClick={handleAuthentication} color='inherit' component={Link} to="/login">{user ? 'Signout': 'Login'}</Button>
-                <Button color='inherit' component={Link} to="/">Home</Button>
-                {user && <Button color='inherit' component={Link} to='/book'>Book Room</Button>}
-                {user && <Button color='inherit' component={Link} to='/history'>Bookings</Button>}
-              </div>
+                  <Button color='inherit' component={Link} to="/">Home</Button>
+                  {user && <Button color='inherit' component={Link} to='/book'>Book Room</Button>}
+                  {user && <Button color='inherit' component={Link} to='/history'>Bookings</Button>}
+                  {admin && <Button color='inherit' component={Link} to='applicationstatus'>ApplicationStatus</Button> }
+                </div>
           </Toolbar>
       </AppBar>  
     );

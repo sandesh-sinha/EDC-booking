@@ -23,7 +23,8 @@ function Booking() {
             guest,
             checkout,
             roomtype,
-            email : user.email
+            email : user.email,
+            status : "pending"
         }
         axios.post('/book', data)
         .then((res)=>{
@@ -78,17 +79,20 @@ function Booking() {
                             <FormControl component="fieldset">
                                 <FormLabel component="legend" className='fields'>Type of Room</FormLabel>
                                 <RadioGroup aria-label="room" name="room" value={roomtype} onChange={(e)=> setroomtype(e.target.value)}>
-                                    <FormControlLabel value="normal" control={<Radio />} label="normal" />
-                                    <FormControlLabel value="suite" control={<Radio />} label="suite" />
+                                    <FormControlLabel value="normal" control={<Radio />} label="normal (Rs-1000 per day)" />
+                                    <FormControlLabel value="suite" control={<Radio />} label="suite (Rs-5000 per day)" />
                                 </RadioGroup>
                             </FormControl> 
-                        </div>                
+                        </div>  
+                        
+                        <div>
                         <Button type='submit' 
                             variant='contained' 
                             className='fields'
                             color='primary'
                             onClick={bookroom}> <div>Confirm Booking</div>
-                        </Button>          
+                        </Button>   
+                        </div>       
                     </form>
             </div>
         </div>

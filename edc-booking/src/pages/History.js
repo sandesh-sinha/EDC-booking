@@ -28,7 +28,7 @@ function History() {
                 <div>
                     <Typography variant='h3'>Booked rooms {userData?.length}</Typography>
                     { userData.map((data) =>{
-                        return <Userdata data={data} id={data.id}/>
+                        return <Userdata data={data} key={data.id}/>
                     })}     
                 </div>
             }

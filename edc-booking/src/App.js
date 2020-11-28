@@ -11,8 +11,10 @@ import Login from './pages/Login'
 import Signup from './pages/Signup'
 import Booking from './pages/Booking'
 import History from './pages/History'
+import AdminLogin from './pages/AdminLogin'
+import ApplicationStatus from './pages/ApplicationStatus'
 function App() {
-  const [{}, dispatch] = useStateValue();
+  const [{user}, dispatch] = useStateValue();
   useEffect(() => {
     auth.onAuthStateChanged(authUser => {
       if(authUser){
@@ -20,6 +22,11 @@ function App() {
           type: 'SET_USER',
           user : authUser,
         })
+        if(authUser.email==="admin@iitism.ac.in"){
+          dispatch({
+            type : 'SET_ADMIN'
+          })
+        }
       }
       else{
         dispatch({
@@ -33,10 +40,12 @@ function App() {
       <Router>
         <Navbar/>
         <Switch>
+          <Route exact path='/applicationstatus' component={ApplicationStatus} />
+          <Route exact path='/adminlogin' component={AdminLogin} />
+          <Route exact path='/book' component={Booking} />
           <Route exact path='/' component={Home} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/signup' component={Signup}/>
-          <Route exact path='/book' component={Booking} />
           <Route exact path='/history' component={History}/>
         </Switch>
       </Router>
